@@ -14,7 +14,6 @@
  */
 namespace App\Controller;
 
-use Cake\Event\Event;
 use Cake\Controller\Controller;
 
 /**
@@ -34,35 +33,9 @@ class AppController extends Controller {
  *
  * @return void
  */
-	public function initialize()
-	{
+	public $theme = 'Modern';
+	public function initialize() {
 		$this->loadComponent('Flash');
-		$this->loadComponent('Auth', [
-			'loginRedirect' => [
-				'controller' => 'Articles',
-				'action' => 'index'
-			],
-			'logoutRedirect' => [
-				'controller' => 'Pages',
-				'action' => 'display',
-				'home'
-			]
-			,
-			'authError' => 'Did you really think you are allowed to see that?',
-			'authenticate' => [
-				'Form' => [
-					'fields' => ['username' => 'email']
-				]
-			]
-		]);
-
-
-	}
-
-
-	public function beforeFilter(Event $event)
-	{
-		$this->Auth->allow(['index', 'view']);
 	}
 
 }
